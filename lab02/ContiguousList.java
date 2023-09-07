@@ -53,7 +53,7 @@ public class ContiguousList {
   // Returns true if the given element exists in the list, false otherwise
   public boolean has(String e) {
     // loop through and check
-    for(int i=0; i<elements.length-1; i++){
+    for(int i=0; i<elements.length; i++){
       if(elements[i] != null && elements[i].equals(e)){ return true; }
     }
     return false;
@@ -96,15 +96,16 @@ public class ContiguousList {
     count--;
 
     return delValue;
-}
+  }
 
 
   // Deletes the first occurrence of an element from the list if it exists,
   // if an element is removed return true, false otherwise
   public boolean delete(String e) {
-    for(int i=0; i<elements.length-1; i++){
+    for(int i=0; i<elements.length; i++){
       if(elements[i] != null && elements[i].equals(e)){
         elements[i] = null;
+        count --;
         return true;
       }
     }
@@ -114,11 +115,21 @@ public class ContiguousList {
   // Deletes all elements within the given collection,
   // this includes duplicates. If it removes an element then return true,
   // otherwise false
-  public boolean deleteAll(Collection<?> c) {
-    int num = c.size();
-    // TODO ryan
-    return false;
+  public boolean deleteAll(Collection<String> c) {
+    boolean removed = false; // Flag to track if any elements were removed
+
+    for (int i = 0; i < elements.length; i++) {
+      if (c.contains(elements[i])) {
+        // If the collection 'c' contains the current element in 'elements', remove it
+        removeElementAtIndex(i);
+        removed = true;
+        i--; // Decrement the index to recheck the current position
+      }
+    }
+
+    return removed;
   }
+
 
   // Sets the element at the given index to the given element and
   // returns the old element, return null if the index doesn't exist
@@ -185,8 +196,6 @@ public class ContiguousList {
       }
 
       input = newArr;
-    }else{
-      System.out.println("(string is a valid length.)");
     }
     return input;
   }
