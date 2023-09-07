@@ -16,25 +16,11 @@ public class ContiguousList {
   // Adds the given element to front of the list
   public void prepend(String e) {
     insert(0, e);
-//    String[] valid = validate(elements);  // validate
-//
-//    for(int i=elements.length; i> 0; i--){   // Loop through backwards
-//      if(valid[i] != null){
-//        valid[i] = valid[i+1];  // move each non-null item one spot to the right
-//      }
-//    }
-//    valid[0] = e;   // put new item at the front
-//    elements = valid;   // reassign elements
-    count ++;
   }
 
   // Adds the given element to the end of the list
   public void append(String e) {
-//    String[] valid = validate(elements);  // validate
-//
-//    valid[count + 1] = e;
     insert(elements.length, e);
-    count ++;
   }
 
   // Inserts the given element add the given index
@@ -44,8 +30,8 @@ public class ContiguousList {
   public void insert(int index, String e) {
     String[] valid = validate(elements);  // validate
 
-    for(int i=elements.length; i> (count - index); i--){   // Loop through backwards
-      valid[i] = valid[i+1];  // move each item with a greater index down one space
+    for(int i = elements.length-2; i > -1; i--){   // Loop through backwards
+      valid[i+1] = valid[i];  // move each item with a greater index down one space
     }
     valid[index] = e;   // add input at specified index
     elements = valid;   // reassign elements
@@ -190,7 +176,7 @@ public class ContiguousList {
   public static String[] validate(String[] input){
     int previousLength = input.length;
 
-    if(previousLength == input.length) {
+    if(previousLength < input.length) {
       String[] newArr = new String[previousLength * 2];
 
       for (int i = 0; i < previousLength; i++) {
