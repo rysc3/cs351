@@ -20,7 +20,11 @@ public class ContiguousList {
 
   // Adds the given element to the end of the list
   public void append(String e) {
-    insert(elements.length, e);
+    String[] valid = validate(elements);  // validate
+    
+    valid[valid.length-1] = e;  // add input at end of array
+    elements = valid;   // reassign elements
+    count ++;
   }
 
   // Inserts the given element add the given index
