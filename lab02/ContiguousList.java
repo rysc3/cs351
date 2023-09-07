@@ -53,8 +53,8 @@ public class ContiguousList {
   // Returns true if the given element exists in the list, false otherwise
   public boolean has(String e) {
     // loop through and check
-    for(int i=0; i<elements.length; i++){
-      if(elements[i].equals(e)){ return true; }
+    for(int i=0; i<elements.length-1; i++){
+      if(elements[i] != null && elements[i].equals(e)){ return true; }
     }
     return false;
   }
@@ -62,7 +62,7 @@ public class ContiguousList {
   // Retrieves the element at the given index, if the index doesn't exist
   // then return null
   public String retrieve(int index) {
-    if(elements[index] != null && index <= elements.length) {
+    if(index < elements.length) {
       return elements[index];
     }
     return null;
@@ -82,36 +82,33 @@ public class ContiguousList {
   // Deletes the element at the given index and returns it,
   // if the index doesn't exist then return null
   public String delete(int index) {
-    String delValue;
-    if(elements[index] != null){
-      delValue = elements[index];
-    }else{
+    if (index < 0 || index >= count) { // Check if the index is valid
       return null;
     }
 
-    for(int i=elements.length; i>index; i--){   // loop backwards
-      elements[i] = elements[i+1];  // replace with the new values up to index
+    String delValue = elements[index];
+
+    for (int i = index; i < count - 1; i++) { // Loop from the index to the second-to-last element
+      elements[i] = elements[i + 1]; // Shift elements to the left
     }
 
-    count --;
+    elements[count - 1] = null; // Clear the last element
+    count--;
+
     return delValue;
-  }
+}
+
 
   // Deletes the first occurrence of an element from the list if it exists,
   // if an element is removed return true, false otherwise
   public boolean delete(String e) {
-    if(e == null) {
-      return false;
-    }else{
-      for(int i=0; i<elements.length; i++){
-        if(elements[i].equals(e)){
-          delete(i);
-          count --;
-          return true;
-        }
+    for(int i=0; i<elements.length-1; i++){
+      if(elements[i] != null && elements[i].equals(e)){
+        elements[i] = null;
+        return true;
       }
     }
-    return false;   // don't know how you'd get here
+    return false;
   }
 
   // Deletes all elements within the given collection,
