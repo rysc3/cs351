@@ -1,5 +1,6 @@
 package lab2;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ContiguousList {
@@ -22,9 +23,13 @@ public class ContiguousList {
   public void append(String e) {
     String[] valid = validate(elements);  // validate
     
-    valid[valid.length-1] = e;  // add input at end of array
-    elements = valid;   // reassign elements
-    count ++;
+    for(int i = elements.length-1; i > -1; i--){   // Loop through backwards
+      if(elements[i] != null){  // if the element is not null
+        valid[i+1] = e;  // move each item with a greater index down one space
+        count ++;
+        break;
+      }
+    }
   }
 
   // Inserts the given element add the given index
@@ -116,18 +121,20 @@ public class ContiguousList {
   // this includes duplicates. If it removes an element then return true,
   // otherwise false
   public boolean deleteAll(Collection<String> c) {
-    boolean removed = false; // Flag to track if any elements were removed
-
-    for (int i = 0; i < elements.length; i++) {
-      if (c.contains(elements[i])) {
-        // If the collection 'c' contains the current element in 'elements', remove it
-        removeElementAtIndex(i);
-        removed = true;
-        i--; // Decrement the index to recheck the current position
+    String[] strings = c.toArray(new String[0]);
+    boolean deleted = false;
+    for (int i = 0; i < c.size(); i++) {
+      for(int j=0; j<elements.length; j++){
+        if(elements[j] != null && elements[j].equals(strings[i])){
+          elements[j] = null;
+          count --;
+          deleted = true;
+        }
       }
+      
     }
 
-    return removed;
+    return deleted;
   }
 
 
