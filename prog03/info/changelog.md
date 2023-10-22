@@ -1,0 +1,53 @@
+## Change Log
+
+- 01_start_screen 
+  - added all the initial game setup. methods to create start screen and game screen.
+  - logic to swtich between scenes for when playing game and when you lose. 
+- 02_fixing_start_screen_lol
+  - broke some things with new game logic, had to go through and fix it 
+  - added new architecture for game logic & ui 
+  - added stack pane, border pane, and canvas combo to create play area 
+  - added abstract frog, enemy, and frogger classes
+  - most of the initailization logic for starting a game 
+  - partially implemented the event handler logic for movement 
+  - added logic for creating new enemies when they run off the screen
+- 03_logic_organization 
+  - Condensed logic, game logic into Frogger.java, gamemode switching logic to Main.java
+  - Added loggers throughout important functions on Frogger.
+  - fixed initialization methods, looks like everything is working now
+- 04_frogger_ui
+  - fix initial visualization
+  - updated initialization logic, added more getters and setters as necessary.
+  - messing around with how the calculations are working to determine where to move to 
+  - moved enemies to be separate threads so they run concurrently
+- 05_visualization
+  - AHHHH okay okay fixed issue with the stupid initialization, I was throwing my Frogger into the ui 
+      init function before creating the rows so it had nothing to draw.
+  - added the canvas pane to the main scene in Main
+  - corrected some lgoci in the update method on ui
+  - fixed visualization for enemies, and method to delete enemies as they hit the edge only once per clock cycle so we don't get issues modifying an array while looping through it.
+- 06_fix_spawns
+  - fix enemy and frog spawning. 
+  - add some more safe rows
+- 07_movement
+  - fixing the logic so the frog can move
+  - fixed collision logic 
+  - refactored Enemy and Frog to be Rectnagle objects rather than actually rendering them myself 
+  - removed confusing logic to where I was ading things to different canvases, now everything that is being rendered is rendered straight to the canvas 
+- 08_sideways_movement
+  - added handlers to receive sideways and backward movement 
+  - added logic to only allow valid moves
+  - added neat little animation that makes you bounce back when trying to move off the screen
+- 09_game_conclusions
+  - implement progress ui
+  - implement you lost screen 
+  - implement you won screen
+  - add ability to loop back to start screen so you can play multiple times without stopping the game 
+  - maybe add a timer?
+- 10_solution_screens 
+  - add data and styling to win and lose screen with cool stats
+- 11_add_sprites 
+  - convert squares to random assortment of sprites
+  - beautiful it works 
+- 12_cleaning_up
+  - getting rid of things that I don't need
