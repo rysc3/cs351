@@ -1,4 +1,4 @@
-# cs351 
+# cs351 - Large Programs 
 
 Ryan Scherbarth, Junior - Computer Science @ The University of New Mexico
 
