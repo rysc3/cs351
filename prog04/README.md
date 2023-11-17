@@ -1,0 +1,4 @@
+This is our project 4 which contains 4 classes. The main class represents the visual representation of this game. The silo class creates the individual silos that contain the instructions and acc and bak values. The Controller class parses the file and sets up the visuals and the silos. The UI class is a secondary class that represents the visuals as well.
+
+INSTRUCTIONS:
+To run the program, one must run the main class, which then opens up an empty console in which you type the file location and specified file name. Then after entered, the ui will pop up. Within the ui, to start the game, click play. Then the game will start playing. The buttons are self explanatory but there is also a slider in which you can change the artificial delay in which the game runs.
